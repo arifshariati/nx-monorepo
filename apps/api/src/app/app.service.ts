@@ -1,16 +1,11 @@
 import { Injectable } from '@nestjs/common';
-
-interface Todo {
-  id: number;
-  text: string;
-  done: boolean;
-}
+import { ITodo } from '@nx-monorepo/shared-types';
 @Injectable()
 export class AppService {
 
-  private todos: Todo[] = [];
+  private todos: ITodo[] = [];
 
-  getData(): Todo[] {
+  getData(): ITodo[] {
     return this.todos;
   }
 
