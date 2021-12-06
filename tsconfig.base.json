@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-monorepo/data-access": ["libs/data-access/src/index.ts"],
       "@nx-monorepo/shared-types": ["libs/shared-types/src/index.ts"]
     }
   },

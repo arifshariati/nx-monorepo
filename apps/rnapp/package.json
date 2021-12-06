@@ -1,0 +1,14 @@
+{
+  "name": "rnapp",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-native": "*",
+    "@testing-library/react-native": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-svg": "*",
+    "@testing-library/react": "*",
+    "axios": "*"
+  }
+}

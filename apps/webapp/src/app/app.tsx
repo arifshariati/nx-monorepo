@@ -1,38 +1,18 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { ITodo } from '@nx-monorepo/shared-types';
-import axios from "axios";
+import { useCallback, useRef } from "react";
+import { useTodos } from '@nx-monorepo/data-access';
 
 export function App() {
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  const { todos, addTodo, toggleTodo } = useTodos();
 
   const textInputRef = useRef<HTMLInputElement>(null);
 
-  const getTodoes = useCallback(async () => {
-    const response = await axios.get<ITodo[]>('http://localhost:3333/api');
-    setTodos(response.data);
-  }, []);
-
-  useEffect(() => {
-    getTodoes();
-  }, [getTodoes]);
-
   const onAddTodo = useCallback(async () => {
     if (textInputRef.current) {
-      await axios.post('http://localhost:3333/api', { text: textInputRef.current.value });
+      await addTodo(textInputRef.current.value);
       textInputRef.current.value = '';
-      getTodoes();
     }
 
-  }, [getTodoes]);
-
-  const onToggle = useCallback(async (id: number) => {
-
-    await axios.post('http://localhost:3333/api/setDone', {
-      id,
-      done: !todos.find((todo) => todo.id === id)?.done
-    });
-    getTodoes();
-  }, [todos, getTodoes]);
+  }, [addTodo]);
 
   return (
     <>
@@ -40,7 +20,7 @@ export function App() {
         {
           todos.map(todo => (
             <div key={todo.id}>
-              <input type={'checkbox'} checked={todo.done} onChange={() => onToggle(todo.id)} />
+              <input type={'checkbox'} checked={todo.done} onChange={() => toggleTodo(todo.id)} />
               {todo.text}
             </div>
           ))

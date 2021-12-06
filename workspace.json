@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "data-access": "libs/data-access",
+    "rnapp": "apps/rnapp",
     "shared-types": "libs/shared-types",
     "webapp": "apps/webapp"
   }
